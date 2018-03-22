@@ -83,3 +83,25 @@ var comparator = (num, pivot) => {
     return 1;
   }
 };
+
+
+// Bubble Sort
+// ---------------
+
+var bubbleSort = function(array) {
+  var notSorted = true;
+
+  while (notSorted) {
+    notSorted = false;
+    for (let i = 1; i < array.length; i++) {
+      if (array[i] < array[i - 1]) {
+        let temp = array[i];
+        array[i] = array[i - 1];
+        array[i - 1] = temp;
+        notSorted = true;
+      }
+    }
+  }
+
+  return array;
+};
