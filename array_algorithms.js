@@ -30,3 +30,35 @@ function sum(array) {
 
   return sumNum;
 }
+
+
+// Optimized Solution
+// Implement two runners so that the subarray resizes with a new front
+// runner when ever we encounter a negative number
+function maxSumSubArray(array) {
+
+  let maxSoFar = min(array);
+  let maxEndingHere = 0;
+
+  for (let i = 0; i < array.length; i++) {
+    maxEndingHere = maxEndingHere + array[i];
+    if (maxEndingHere > maxSoFar) {
+      maxSoFar = maxEndingHere;
+    }
+    if (maxEndingHere < 0) {
+      maxEndingHere = 0;
+    }
+  }
+  return maxEndingHere;
+}
+
+function min(array) {
+  let minimum = array[0];
+  array.forEach(num => {
+    if (num < minimum) {
+      minimum = num;
+    }
+  });
+
+  return minimum;
+}
