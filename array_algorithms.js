@@ -33,32 +33,26 @@ function sum(array) {
 
 
 // Optimized Solution
-// Implement two runners so that the subarray resizes with a new front
-// runner when ever we encounter a negative number
+// We set maxSoFar to 0 and maxEndingHere to 0 and start at the first
+// number. We add the next number in the array to maxEndingHere and if
+// maxEndingHere is greater than maxSoFar, then we make that
+// the new maxSoFar. If the maxEndingHere is negative, that means the
+// subarray will have detrimental values so we want to set maxEndingHere
+// to 0 and start a new subArray.
 function maxSumSubArray(array) {
-
-  let maxSoFar = min(array);
+  let maxSoFar = 0;
   let maxEndingHere = 0;
 
   for (let i = 0; i < array.length; i++) {
     maxEndingHere = maxEndingHere + array[i];
-    if (maxEndingHere > maxSoFar) {
+
+    if (maxSoFar < maxEndingHere) {
       maxSoFar = maxEndingHere;
     }
     if (maxEndingHere < 0) {
       maxEndingHere = 0;
     }
   }
-  return maxEndingHere;
-}
 
-function min(array) {
-  let minimum = array[0];
-  array.forEach(num => {
-    if (num < minimum) {
-      minimum = num;
-    }
-  });
-
-  return minimum;
+  return maxSoFar;
 }
